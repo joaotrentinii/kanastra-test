@@ -8,6 +8,7 @@ quarkus-bom = { module = "io.quarkus:quarkus-bom", version.ref = "quarkus" }
 kotest-core = { module = "io.kotest:kotest-assertions-core-jvm", version.prefer = "5.8.0" }
 flyway-mysql = { module = "org.flywaydb:flyway-mysql", version.prefer = "10.8.1" }
 junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.prefer = "2.2.0" }
+redis-lettuce = { module = "io.lettuce:lettuce-core", version.prefer = "6.3.0.RELEASE" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.prefer = "5.10.2" }
 mysql-connector = { module = "com.mysql:mysql-connector-j", version.prefer = "8.3.0" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.prefer = "1.8.0" }

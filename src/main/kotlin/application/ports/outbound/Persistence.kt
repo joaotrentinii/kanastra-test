@@ -1,8 +1,8 @@
 package application.ports.outbound
 
-import application.models.statement.Statement
+import application.domain.events.Event
 
 interface Persistence {
 
-    suspend fun execute(statements: List<Statement>)
+    suspend fun execute(events: List<Event>)
 }
