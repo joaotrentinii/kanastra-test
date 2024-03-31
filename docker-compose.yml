@@ -1,0 +1,52 @@
+version: '3'
+services:
+    payments:
+        container_name: 'payments'
+        labels:
+            component.description: payments
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8000:8000"
+        deploy:
+            resources:
+                limits:
+                    memory: 2048m
+                    cpus: '2'
+        env_file:
+            - '.env'
+        volumes:
+            - .:/var/www/html
+        depends_on:
+            - redis
+            - mysql80
+
+    mysql80:
+        container_name: mysql80
+        labels:
+            component.description: MySql 8.0.28
+        image: mysql:8.0.28
+        ports:
+            - "3306:3306"
+        deploy:
+            resources:
+                limits:
+                    memory: 1024m
+                    cpus: '1.0'
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /export/mysql80-data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: dev
+
+    redis:
+        image: redis:latest
+        container_name: redis
+        ports:
+            - "6379:6379"
+        deploy:
+            resources:
+                limits:
+                    memory: 2048m
+                    cpus: '1'
