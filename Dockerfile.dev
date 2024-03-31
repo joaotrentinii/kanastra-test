@@ -1,0 +1,10 @@
+FROM repo.intranet.pags/base-images/java:21-centos7
+
+WORKDIR /opt/application
+
+ENV JAVA_TOOL_OPTIONS="-javaagent:/opt/opentelemetry/latest/opentelemetry-javaagent.jar"
+
+EXPOSE 80
+EXPOSE 6011
+
+CMD ./gradlew :projectors:payin:vegasws:quarkusDev -Ddebug=6011 -DdebugHost=0.0.0.0 -Dquarkus.analytics.disabled=true
