@@ -21,3 +21,4 @@ ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.require = "12.1.0" }
 quarkus = { id = "io.quarkus", version.ref = "quarkus" }
 sonarqube = { id = "org.sonarqube", version.require = "4.4.1.3373" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

@@ -3,10 +3,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.kover)
-    alias(libs.plugins.ktlint)
     alias(libs.plugins.quarkus)
-    alias(libs.plugins.sonarqube)
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 repositories {
@@ -36,14 +35,19 @@ dependencies {
     testImplementation(libs.test.containers.mysql)
 }
 
-tasks.withType<Test> {
+tasks.test {
     jvmArgs = listOf("--add-opens", "java.base/java.time=ALL-UNNAMED")
+    failFast = true
+    maxHeapSize = "2048m"
     useJUnitPlatform()
-    environment(
-        "NEW_RELIC_LICENSE_KEY" to "INVALID_LICENSE_KEY",
-    )
 }
 
+kotlin {
+    jvmToolchain(21)
+    compilerOptions {
+        allWarningsAsErrors = true
+    }
+}
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "21"

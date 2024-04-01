@@ -6,6 +6,7 @@ import io.lettuce.core.api.async.RedisAsyncCommands
 import jakarta.enterprise.context.Dependent
 import jakarta.inject.Singleton
 import jakarta.ws.rs.Produces
+import java.lang.System.getenv
 
 @Dependent
 class Factory {
@@ -13,8 +14,10 @@ class Factory {
     @Produces
     @Singleton
     fun client(): RedisAsyncCommands<String, String> {
-        val url = RedisURI.create("redis", 6379)
-        val redisClient = RedisClient.create(url)
+        val host = getenv("REDIS_HOST")
+        val port = getenv("REDIS_PORT").toInt()
+        val redisUri = RedisURI.create(host, port)
+        val redisClient = RedisClient.create(redisUri)
         val connection = redisClient.connect()
         return connection.async()
     }

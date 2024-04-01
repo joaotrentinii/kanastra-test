@@ -8,11 +8,7 @@ kover {
     htmlReport { onCheck.set(true) }
     filters {
         classes {
-            excludes += listOf(
-                "**.*\$\$serializer",
-                "platform.policy.runner.starter.**",
-                "platform.policy.runner.driven.processes.Queries**",
-            )
+            excludes += listOf("**.*\$\$serializer")
         }
     }
 }

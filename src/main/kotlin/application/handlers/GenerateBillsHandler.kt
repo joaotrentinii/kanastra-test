@@ -26,11 +26,16 @@ class GenerateBillsHandler(
             .map { Bill.from(line = it) }
 
         val generated = bank.generate(bills = bills)
-        val processedFile = listOf(ProcessedFile.from(command.file))
+        val processedFile = ProcessedFile.from(command.file)
 
+        /**
+         * Envia os eventos de boleto gerado de forma paralela com a utilização de coroutines para o Redis
+         * A ideia é que todas as requisições de IO sejam executadas dessa forma
+         * Fiz apenas aqui, pois foi o único adaptador implementado que faz várias requisições
+         * */
         generated.forEach { launch { cache.send(event = it) } }
 
         mail.send(events = generated)
-        persistence.execute(events = processedFile)
+        persistence.execute(events = listOf(processedFile))
     }
 }
