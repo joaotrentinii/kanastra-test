@@ -19,7 +19,7 @@ class AdapterTest {
         adapter.execute(events = listOf(event))
 
         /** @Então um registro deverá ser persistido no banco de dados */
-        val row = Queries.findAll()
+        val row = Queries.first()
 
         /** @E o registro deverá conter o mesmo nome de arquivo do evento */
         event.name shouldBe row.getString("name")

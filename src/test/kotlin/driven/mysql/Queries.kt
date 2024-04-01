@@ -12,7 +12,7 @@ object Queries {
         .executeAndAwait()
         .count()
 
-    fun findAll(): Row = CLIENT
+    fun first(): Row = CLIENT
         .preparedQuery(FIND_ALL)
         .executeAndAwait()
         .first()
