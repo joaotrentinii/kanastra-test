@@ -27,11 +27,8 @@ dependencies {
     implementation("io.quarkus:quarkus-reactive-mysql-client")
     implementation("io.quarkus:quarkus-resteasy-reactive-kotlin-serialization")
 
-    testImplementation(libs.mockk)
     testImplementation(libs.kotest.core)
-    testImplementation(libs.junit.pioneer)
     testImplementation(libs.junit.jupiter)
-    testImplementation(libs.junit.jupiter.params)
     testImplementation(libs.test.containers.mysql)
 }
 

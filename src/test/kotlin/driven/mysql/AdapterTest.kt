@@ -3,12 +3,18 @@ package driven.mysql
 import application.domain.events.ProcessedFile
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import starter.MysqlContainer.CLIENT
 
 class AdapterTest {
 
     private val adapter = Adapter(CLIENT)
+
+    @AfterEach
+    fun `After each`() {
+        Queries.clear()
+    }
 
     @Test
     fun `When the file is processed`(): Unit = runBlocking {

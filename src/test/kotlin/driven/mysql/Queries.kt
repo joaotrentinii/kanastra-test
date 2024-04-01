@@ -16,4 +16,8 @@ object Queries {
         .preparedQuery(FIND_ALL)
         .executeAndAwait()
         .first()
+
+    fun clear() = CLIENT
+        .preparedQuery("DELETE FROM file")
+        .executeAndAwait()
 }
